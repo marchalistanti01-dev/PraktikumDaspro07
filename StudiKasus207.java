@@ -8,11 +8,12 @@ public class StudiKasus207 {
         String jenisKegiatan;
         int juara;
         int jumlahDokumen;
+        int statusPKM;
 
         System.out.print("Masukkan nama mahasiswa: ");
         nama = sc.nextLine();
 
-        System.out.print("Masukkan jenis kegiatan (BELMAWA/BAKORMA/Mandiri): ");
+        System.out.print("Masukkan jenis kegiatan (BELMAWA/BAKORMA/Mandiri/PKM/Lainnya): ");
         jenisKegiatan = sc.nextLine();
 
         if (jenisKegiatan.equalsIgnoreCase("BELMAWA")
@@ -45,6 +46,36 @@ public class StudiKasus207 {
                 System.out.println("Status: Dana penghargaan tidak diberikan");
                 System.out.println("Alasan: Bukan peraih juara 1, 2, atau 3.");
             }
+        } else if (jenisKegiatan.equalsIgnoreCase("PKM")) {
+            System.out.print("Masukkan status pendanaan PKM (1=lolos, 0=tidak lolos): ");
+            statusPKM = sc.nextInt();
+
+            if (statusPKM == 1) {
+
+                System.out.print("Masukkan jumlah dokumen yang diupload (0-4): ");
+                jumlahDokumen = sc.nextInt();
+
+                if (jumlahDokumen == 4) {
+                    System.out.println("Nama mahasiswa: " + nama);
+                    System.out.println("Status: Dana penghargaan diberikan");
+                    System.out.println("Alasan: PKM lolos pendanaan dan dokumen lengkap.");
+                } else {
+                    System.out.println("Nama mahasiswa: " + nama);
+                    System.out.println("Status: Dana penghargaan tidak diberikan");
+                    System.out.println("Alasan: Dokumen belum lengkap.");
+                    System.out.println("Jumlah dokumen yang masih kurang: "
+                            + (4 - jumlahDokumen));
+                }
+
+            } else {
+                System.out.println("Nama mahasiswa: " + nama);
+                System.out.println("Status: Dana penghargaan tidak diberikan");
+                System.out.println("Alasan: PKM tidak lolos pendanaan.");
+            }
+        } else {
+            System.out.println("Nama mahasiswa: " + nama);
+            System.out.println("Status: Dana penghargaan tidak diberikan");
+            System.out.println("Alasan: Jenis kegiatan termasuk Lainnya.");
         }
 
         sc.close();
